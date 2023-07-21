@@ -5,6 +5,11 @@ metadata:
   name: dotnetdemodeployment
 spec:
   replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
   selector:
     matchLabels:
       app: dotnet-app
@@ -15,8 +20,39 @@ spec:
     spec:
       containers:
         - name: dotnet-app
-          image: dotnetdemodocker.azurecr.io/newdotnet:dev
+          image: enariya0410/myapp:v1.0
+          resources:
+            requests:
+              cpu:  100m
+              memory: 300Mi
+            limits:
+              cpu: 200m
+              memory: 300Mi
+          livenessProbe:
+            exec:
+              command:
+              - ls
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+              - ls
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 3
+            periodSeconds: 10
           ports:
             - containerPort: 5000
+          env:  # Add the 'env' section to specify environment variables
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: configk8
+                  key: DB_HOST  # The key to refer from the ConfigMap
       imagePullSecrets:
         - name: acr-secret

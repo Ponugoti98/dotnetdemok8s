@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-same-namespace
+  namespace: dotnetdemo
+spec:
+  podSelector:
+    matchLabels:
+      app: dotnet-app
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector: {}
