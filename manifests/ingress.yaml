@@ -20,6 +20,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: my-app-service
+            name: dotnetdemoservice
             port:
               number: 80

@@ -4,4 +4,4 @@ metadata:
   name: configk8
   namespace: dotnetdemo
 data:
-  key: DB_HOST
+  DB_HOST: bermtec

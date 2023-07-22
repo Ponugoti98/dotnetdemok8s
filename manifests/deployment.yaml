@@ -18,6 +18,15 @@ spec:
       labels:
         app: dotnet-app
     spec:
+      affinity:  # Add the 'affinity' section to specify node affinity
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: project
+                    operator: In
+                    values:
+                      - dotnet
       containers:
         - name: dotnet-app
           image: enariya0410/myapp:v1.0
@@ -48,11 +57,11 @@ spec:
             periodSeconds: 10
           ports:
             - containerPort: 5000
-          env:  # Add the 'env' section to specify environment variables
+          env:
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: configk8
-                  key: DB_HOST  # The key to refer from the ConfigMap
+                  key: DB_HOST
       imagePullSecrets:
         - name: acr-secret
