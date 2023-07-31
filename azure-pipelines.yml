@@ -9,10 +9,7 @@ variables:
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'bhuvanaa6d0-auth'
-
-# Agent VM image name
-pool:
-  name: test
+  vmImageName: 'test'
 
 stages:
   - stage: Build
@@ -21,7 +18,7 @@ stages:
       - job: Build
         displayName: Build
         pool:
-          vmImage: 'myVm'
+          vmImage: $(vmImageName)
         steps:
           - task: Docker@2
             displayName: Build and push an image to container registry
@@ -44,7 +41,7 @@ stages:
       - deployment: Deploy
         displayName: Deploy
         pool:
-          vmImage: 'myVm'
+          vmImage: $(vmImageName)
         environment: 'Ponugoti98dotnetdemok8s.dotnetdemo'
         strategy:
           runOnce:
