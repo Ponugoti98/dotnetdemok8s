@@ -19,7 +19,8 @@ variables:
   imagePullSecret: 'bhuvanaa6d0-auth'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  pool:
+  name: test
 
 
 stages:
@@ -29,7 +30,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: $(vmImageName)
+      vmImage: myVm
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
@@ -52,7 +53,7 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     pool:
-      vmImage: $(vmImageName)
+      vmImage: myVm
     environment: 'Ponugoti98dotnetdemok8s.dotnetdemo'
     strategy:
       runOnce:
