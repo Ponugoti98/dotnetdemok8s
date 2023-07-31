@@ -1,6 +1,9 @@
 trigger:
   - develop
 
+pool:
+  name: test
+
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'f262d918-d061-436d-aa43-9ab62dff1cd6'
