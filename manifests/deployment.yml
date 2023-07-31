@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: kdotnetdemodockerk8 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kdotnetdemodockerk8
+  template:
+    metadata:
+      labels:
+        app: kdotnetdemodockerk8 
+    spec:
+      containers:
+        - name: kdotnetdemodockerk8 
+          image: bhuvana.azurecr.io/kdotnetdemodockerk8
+          ports:
+          - containerPort: 5000
