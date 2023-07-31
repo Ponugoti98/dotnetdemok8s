@@ -13,7 +13,7 @@ variables:
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'bhuvana4398fa18-auth'
-  vmImageName: 'myVm'
+  vmImageName: 'test'
 
 stages:
 - stage: Build
