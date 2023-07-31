@@ -2,15 +2,9 @@
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-# Trigger the pipeline on the 'develop' branch
 trigger:
   - develop
 
-# Define the agent pool to be used for the pipeline
-pool:
-  name: test
-
-# Define variables to be used in the pipeline
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'f262d918-d061-436d-aa43-9ab62dff1cd6'
@@ -21,7 +15,9 @@ variables:
   imagePullSecret: 'bhuvana4398fa18-auth'
   vmImageName: 'myVm'
 
-# Define the pipeline stages
+pool:
+  name: test
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -62,17 +58,4 @@ stages:
             displayName: Create imagePullSecret
             inputs:
               action: createSecret
-              secretName: $(imagePullSecret)
-              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-
-          - task: KubernetesManifest@0
-            displayName: Deploy to Kubernetes cluster
-            inputs:
-              action: deploy
-              manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
-              imagePullSecrets: |
-                $(imagePullSecret)
-              containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
+              secretName: $(imagePull
