@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: dotnet-role
-  namespace: dotnetdemo
+  namespace: sincehetoldmetoo
 rules:
   - apiGroups: [""]
     resources: ["pods"]
