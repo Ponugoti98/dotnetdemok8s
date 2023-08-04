@@ -16,7 +16,7 @@ variables:
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'bhuvana4398fa18-auth'
-  vmImageName: 'test'  # The agent name in the "test" agent pool
+  vmImageName: 'ubuntu-latest'  # The agent name in the "test" agent pool
   system.debug: true
 
 stages:
