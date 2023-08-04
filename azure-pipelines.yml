@@ -5,7 +5,6 @@
 trigger:
   - develop
 
-  # Use the agent pool named "test"
 
 variables:
   # Container registry service connection established during pipeline creation
@@ -15,7 +14,7 @@ variables:
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'bhuvana4398fa18-auth'
-  vmImageName: 'Hosted Agent'  # The agent name in the "test" agent pool
+  vmImageName: 'test'  # The agent name in the "test" agent pool
   system.debug: true
 
 stages:
