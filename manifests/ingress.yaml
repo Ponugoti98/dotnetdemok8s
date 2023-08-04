@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-ingress
-  namespace: dotnetdemo   # Replace 'your-namespace' with the desired namespace name
+  namespace: sincehetoldmetoo   # Replace 'your-namespace' with the desired namespace name
   annotations:
     # Add annotations here if needed
     nginx.ingress.kubernetes.io/rewrite-target: /$1
