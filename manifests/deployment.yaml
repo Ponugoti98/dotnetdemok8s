@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: dotnet-app
-          image: enariya0410/myapp:v1.0
+          image: bhuvana.azurecr.io/dotnedemodockerk8:87
           resources:
             requests:
               cpu:  100m
