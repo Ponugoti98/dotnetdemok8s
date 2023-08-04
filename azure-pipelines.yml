@@ -6,7 +6,7 @@ trigger:
   - develop
 
 pool:
-  name: test
+  name: test  # Use the agent pool named "test"
 
 variables:
   # Container registry service connection established during pipeline creation
@@ -16,7 +16,8 @@ variables:
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'bhuvana4398fa18-auth'
-  vmImageName: 'test'
+  vmImageName: 'test'  # The agent name in the "test" agent pool
+  system.debug: true
 
 stages:
 - stage: Build
@@ -28,7 +29,7 @@ stages:
       vmImage: $(vmImageName)  # Use the variable for the agent VM image
     steps:
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: Build and push an image to the container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
@@ -62,7 +63,7 @@ stages:
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
 
           - task: KubernetesManifest@0
-            displayName: Deploy to Kubernetes cluster
+            displayName: Deploy to the Kubernetes cluster
             inputs:
               action: deploy
               manifests: |
@@ -72,3 +73,6 @@ stages:
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
+
+
+  
