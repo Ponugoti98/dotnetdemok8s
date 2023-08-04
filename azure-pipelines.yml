@@ -19,25 +19,25 @@ variables:
   vmImageName: 'test'  # The agent name in the "test" agent pool
   system.debug: true
 
-#stages:
-#- stage: Build
-#  displayName: Build stage
-#  jobs:
-#  - job: Build
-#    displayName: Build
-#    pool:
-#      vmImage: $(vmImageName)  # Use the variable for the agent VM image
-#    steps:
-#    - task: Docker@2
-#      displayName: Build and push an image to the container registry
-#      inputs:
-#        command: buildAndPush
-#        repository: $(imageRepository)
-#        dockerfile: $(dockerfilePath)
-#        containerRegistry: $(dockerRegistryServiceConnection)
-#        tags: |
-#          $(tag)
-#
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)  # Use the variable for the agent VM image
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to the container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+
 #    - upload: manifests
 #      artifact: manifests
 
