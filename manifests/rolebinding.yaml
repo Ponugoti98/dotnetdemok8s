@@ -6,7 +6,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: dotnet-service-account
-    namespace: dotnetdemo
+    namespace: sincehetoldmetoo
 roleRef:
   kind: Role
   name: dotnet-role
