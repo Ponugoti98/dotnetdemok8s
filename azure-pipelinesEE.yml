@@ -19,7 +19,7 @@ variables:
   imagePullSecret: 'bhuvana19344fd7-auth'
 
   # Agent VM image name
-  vmImageName: 'test'
+  vmImageName: 'ubuntu-latest'
 
 
 stages:
