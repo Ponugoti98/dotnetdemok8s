@@ -5,6 +5,9 @@ metadata:
   name: dotnetdemodeployment
 spec:
   replicas: 1
+  selector:
+    matchLabels: # Use 'matchLabels' instead of 'selector'
+      app: dotnet-app # Ensure this label matches the label used in the template
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -13,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        app: dotnet-app
+        app: dotnet-app # Use the same label used in the 'selector'
     spec:
       containers:
         - name: dotnet-app
