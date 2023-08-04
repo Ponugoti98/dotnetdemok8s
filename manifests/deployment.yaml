@@ -10,23 +10,11 @@ spec:
       maxSurge: 25%
       maxUnavailable: 25%
     type: RollingUpdate
-  selector:
-    matchLabels:
-      app: dotnet-app
   template:
     metadata:
       labels:
         app: dotnet-app
     spec:
-      affinity:  # Add the 'affinity' section to specify node affinity
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: project
-                    operator: In
-                    values:
-                      - dotnet
       containers:
         - name: dotnet-app
           image: enariya0410/myapp:v1.0
