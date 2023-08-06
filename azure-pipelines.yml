@@ -64,7 +64,7 @@ stages:
                   inputs:
                     action: createSecret
                     secretName: $(imagePullSecret)
-                    dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+                    dockerRegistryEndpoint: $(kubernetesServiceConnection)
 
                 - task: KubernetesManifest@0
                   displayName: Deploy to Kubernetes cluster
@@ -100,7 +100,7 @@ stages:
                   inputs:
                     action: createSecret
                     secretName: $(imagePullSecret)
-                    dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+                    dockerRegistryEndpoint: $(kubernetesServiceConnection)
 
                 - task: KubernetesManifest@0
                   displayName: Deploy to Kubernetes cluster
@@ -136,7 +136,7 @@ stages:
                   inputs:
                     action: createSecret
                     secretName: $(imagePullSecret)
-                    dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+                    dockerRegistryEndpoint: $(kubernetesServiceConnection)
 
                 - task: KubernetesManifest@0
                   displayName: Deploy to Kubernetes cluster
